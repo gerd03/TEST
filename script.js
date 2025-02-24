@@ -25,7 +25,7 @@ document.getElementById("generateBtn").addEventListener("click", function() {
         const expirationDate = new Date(testDate);
         expirationDate.setDate(expirationDate.getDate() + 61);
 
-        const formattedTestDate = formatDate(testDate);
+        const formattedTestDate = formatDateTime(testDate); // ✅ Now shows AM/PM
         const formattedExpiration = formatDate(expirationDate);
 
         const certificateNumber = "202507267000" + getRandomNumber(340, 450);
@@ -63,6 +63,18 @@ document.getElementById("generateBtn").addEventListener("click", function() {
 function getRandomTestDate() {
     const randomDay = Math.floor(Math.random() * (23 - 1 + 1)) + 1; 
     return new Date(2025, 1, randomDay);
+}
+
+function formatDateTime(date) {
+    return date.toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true // ✅ Now properly formats with AM/PM
+    });
 }
 
 function formatDate(date) {
