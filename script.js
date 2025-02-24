@@ -28,7 +28,7 @@ document.getElementById("generateBtn").addEventListener("click", function() {
         const formattedTestDate = formatDateTime(testDate); // ✅ Now includes SECONDS
         const formattedExpiration = formatDate(expirationDate);
 
-        const certificateNumber = "202507267000" + getRandomNumber(340, 450);
+        const certificateNumber = "202407267000" + getRandomNumber(340, 450);
         const referenceCode = certificateNumber.slice(-3);
         const authenticationCode = generateAuthCode();
 
@@ -65,7 +65,7 @@ function getRandomTestDate() {
     let testDate;
     do {
         const randomDay = Math.floor(Math.random() * (23 - 1 + 1)) + 1; // Feb 1-23
-        testDate = new Date(2025, 1, randomDay);
+        testDate = new Date(2024, 1, randomDay);
     } while (testDate.getDay() === 0); // Exclude Sundays (0 = Sunday)
 
     // Generate a random time between 8:00 AM and 5:00 PM
