@@ -25,7 +25,7 @@ document.getElementById("generateBtn").addEventListener("click", function() {
         const expirationDate = new Date(testDate);
         expirationDate.setDate(expirationDate.getDate() + 61);
 
-        const formattedTestDate = formatDateTime(testDate); // ✅ Now shows AM/PM
+        const formattedTestDate = formatDateTime(testDate); // ✅ Now includes SECONDS
         const formattedExpiration = formatDate(expirationDate);
 
         const certificateNumber = "202507267000" + getRandomNumber(340, 450);
@@ -38,6 +38,7 @@ document.getElementById("generateBtn").addEventListener("click", function() {
             <p><strong>REFERENCE CODE:</strong> ${referenceCode}</p>
             <p><strong>AUTHENTICATION CODE:</strong> 2D${authenticationCode}0630C</p>
             <p><strong>EXPIRATION DATE:</strong> ${formattedExpiration}</p>
+            <p><strong>FUEL TYPE:</strong> ${fuelType}</p> 
         `;
 
         if (vehicleType === "Motorcycle") {
@@ -61,8 +62,19 @@ document.getElementById("generateBtn").addEventListener("click", function() {
 });
 
 function getRandomTestDate() {
-    const randomDay = Math.floor(Math.random() * (23 - 1 + 1)) + 1; 
-    return new Date(2025, 1, randomDay);
+    let testDate;
+    do {
+        const randomDay = Math.floor(Math.random() * (23 - 1 + 1)) + 1; // Feb 1-23
+        testDate = new Date(2025, 1, randomDay);
+    } while (testDate.getDay() === 0); // Exclude Sundays (0 = Sunday)
+
+    // Generate a random time between 8:00 AM and 5:00 PM
+    const randomHour = Math.floor(Math.random() * (17 - 8 + 1)) + 8; // 8AM-5PM
+    const randomMinute = Math.floor(Math.random() * 60);
+    const randomSecond = Math.floor(Math.random() * 60);
+    testDate.setHours(randomHour, randomMinute, randomSecond); // ✅ Seconds included
+
+    return testDate;
 }
 
 function formatDateTime(date) {
@@ -72,8 +84,8 @@ function formatDateTime(date) {
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit",
-        hour12: true // ✅ Now properly formats with AM/PM
+        second: "2-digit", // ✅ Added seconds
+        hour12: true // ✅ Ensures AM/PM format
     });
 }
 
