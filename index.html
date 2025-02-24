@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emission Test System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>FAKE EMISSION TEST GENERATOR</h1>
+
+        <div class="input-section">
+            <label for="plateNumber">PLATE NUMBER:</label>
+            <input type="text" id="plateNumber" placeholder="Enter Plate Number">
+            
+            <label for="vehicleType">VEHICLE TYPE:</label>
+            <select id="vehicleType">
+                <option value="Motorcycle">MOTORCYCLE</option>
+                <option value="Heavy Equipment">HEAVY EQUIPMENT</option>
+                <option value="Service Vehicle">SERVICE VEHICLE</option>
+            </select>
+
+            <label for="fuelType">FUEL TYPE:</label>
+            <select id="fuelType">
+                <option value="Diesel - None Turbo">DIESEL - NONE TURBO</option>
+                <option value="Gasoline">GASOLINE</option>
+            </select>
+
+            <button id="generateBtn">GENERATE TEST</button>
+        </div>
+
+        <div id="loadingAnimation" class="hidden">BE PATIENT TRUST THE PROCESS...</div>
+        <div id="testResult" class="hidden"></div>
+
+        <h2>TEST HISTORY</h2>
+        <ul id="historyList"></ul>
+        <button id="clearHistory">CLEAR HISTORY</button>
+
+        <footer>
+            PREPARED BY: ALEJANDRO MARTINEZ JR.
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
